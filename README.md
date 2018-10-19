@@ -25,7 +25,15 @@ cd build
 cmake -DCMAKE_BUILD_TYPE=Release -C ../config.cmake ../
 make`
 
-In order to have it work correctly on my end, I used the Developer Command Prompt for Visual Studio, and I had to change the third command to: `cmake -DCMAKE_BUILD_TYPE=Release -C ../config.cmake ../ -G "Visual Studio 15 Win64"`, as it otherwise defaults to Win32 and changing it manually is a pain.  
+In order to have it work correctly on my end, I used the Developer Command Prompt for Visual Studio, and I had to change the third command to: `cmake -DCMAKE_BUILD_TYPE=Release -C ../config.cmake ../ -G "Visual Studio 15 Win64"`, as it otherwise defaults to Win32 and changing it manually is a pain. This creates a VS solution for the whole thing. Add the GAUSS/ThirdParty/libigl/includes directory to the include options to the following projects:
+- Base
+- Core
+- FEM
+- NeoUnityian
+- UI (Optional)
+- Any of the examples (Optional)
+
+If you're finding that the plugin runs too slowly, try changing the inlining options on those projects to "any suitable", and the floating point operations to "fast".
 
 After compiling, you should have the file GAUSS/build/bin/Release/NeoUnityian.dll. Copy this to your Assets/Plugins folder in your Unity project.  You should also copy the Scripts folder into your Assets.
 
