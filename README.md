@@ -33,7 +33,7 @@ In order to have it work correctly on my end, I used the Developer Command Promp
 - UI (Optional)
 - Any of the examples (Optional)
 
-If you're finding that the plugin runs too slowly, try changing the inlining options on those projects to "any suitable", and the floating point operations to "fast".
+If you're finding that the plugin runs too slowly, make sure you're compiling to release, and try changing the inlining options on those projects to "any suitable", and the floating point operations to "fast".
 
 After compiling, you should have the file GAUSS/build/bin/Release/NeoUnityian.dll. Copy this to your Assets/Plugins folder in your Unity project.  You should also copy the Scripts folder into your Assets.
 
