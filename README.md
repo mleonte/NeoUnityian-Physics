@@ -1,2 +1,4 @@
 # NeoUnityian-Physics
-A neohookean physics plugin for unity (under development)
+This is a Neohookean physics plugin for Unity, which is built on top of GAUSS (https://github.com/dilevin/GAUSS)
+
+
