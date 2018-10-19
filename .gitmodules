@@ -1,0 +1,6 @@
+[submodule "GAUSS"]
+	path = GAUSS
+	url = https://github.com/dilevin/GAUSS
+[submodule "Unity/Scripts/Geometry3sharp"]
+	path = Unity/Scripts/Geometry3sharp
+	url = https://github.com/gradientspace/geometry3Sharp
