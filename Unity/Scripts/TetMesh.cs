@@ -36,7 +36,6 @@ public class TetMesh : MonoBehaviour {
         WriteTetFiles(OFF);
         ParseMeshFiles();
         MeshReplace();
-        //Undo.RecordObject(this, "Updated mesh");
     }
 
     public void Load()
@@ -53,8 +52,6 @@ public class TetMesh : MonoBehaviour {
             total[i] = verticies[i] + displacements[i];
         }
         GetComponent<MeshFilter>().mesh.vertices = total.ToVectors().ToArray();
-        MeshCollider mc = GetComponent<MeshCollider>();
-        
     }
 
     void MeshReplace()
@@ -64,10 +61,8 @@ public class TetMesh : MonoBehaviour {
         newMesh.triangles = faces;
         newMesh.uv = newMesh.vertices.Select(v => new Vector2(v.x, v.z)).ToArray();
         newMesh.RecalculateNormals();
-        newMesh.RecalculateBounds();
+        newMesh.MarkDynamic();
         GetComponent<MeshFilter>().mesh = newMesh;
-        //MeshCollider mc = GetComponent<MeshCollider>();
-        //if (mc) mc.sharedMesh = newMesh;
     }
 
     void ParseMeshFiles()

@@ -8,7 +8,8 @@ public class World {
 
     private IntPtr worldPtr;
     private IntPtr stepPtr;
-    public float timeStepRate = 0.5f;
+    float timeStepRate = 0.5f;
+    public float[] displacements;
 
     /**
         Initializes a world for simulation
@@ -46,7 +47,7 @@ public class World {
     [DllImport("NeoUnityian")]
     static extern int releasePointer(ref IntPtr ptr);
 
-    public World()
+    public World(float timeStepRate)
     {
         worldPtr = new IntPtr();
         stepPtr = new IntPtr();
@@ -57,7 +58,7 @@ public class World {
         Debug.Log("World setup successful");
     }
 
-    public void AddObject(ref float[] vertices, ref int[] tets)
+    public void AddObject(float[] vertices, int[] tets)
     {
         int vertexCount = vertices.Length;
         int tetCount = tets.Length;
@@ -69,13 +70,14 @@ public class World {
     {
         finalize(ref worldPtr);
     }
-
-    public void Step(float[] displacements)
+    
+    public void Step()
     {
         int vertexCount = displacements.Length;
+        
         if (step(ref worldPtr, ref stepPtr, ref displacements, ref vertexCount) != 0)
             throw new Exception("Step unsuccessful");
-        
+
     }
 
     ~World()
