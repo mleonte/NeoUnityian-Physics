@@ -47,7 +47,7 @@ The last step is to compile Tetgen (using the VS command prompt, `cl tetgen.c`).
 
 3. Add your GameObject to WorldManager's `objects` array.  
 
-When you start the game, the plugin will detect that the input mesh was changed.  It will use Tetgen to generate a new volumetric mesh (as opposed to the surface meshes Unity generally uses).  TetMesh will then send the new mesh's vertex and face data to the MeshFilter, and WorldManager will initalize a GAUSS world using the vertex and tetrahedron data of every object it is given. On every frame, WorldManager will fetch the vertex displacements from GAUSS and update its objects with them.
+Then press "Generate" in the TetMesh inspector. It will use Tetgen to generate a new volumetric mesh (as opposed to the surface meshes Unity generally uses).  TetMesh will then send the new mesh's vertex and face data to the MeshFilter, and WorldManager will initalize a GAUSS world using the vertex and tetrahedron data of every object it is given. On every frame, WorldManager will fetch the vertex displacements from GAUSS and update its objects with them.
 
 ### Known Issues
 
