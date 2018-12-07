@@ -51,11 +51,8 @@ Then press "Generate" in the TetMesh inspector. It will use Tetgen to generate a
 
 ### Known Issues
 
-- This plugin was working correctly at one point, but the DLL is no longer generating new displacements after the third step or so. It was broken in the process of adding support for multiple objects.
 - At the moment, you have to manually change NeoUnityian.cpp in order to change what physics systems will be used for the simulation.  Will have to add some way to change the systems used from within Unity instead.
-- Unity keeps flipping the normals the wrong way
 
 ### Future Steps
 
 - Add some way to link Unity objects together within the GAUSS world
-- Will eventually replace GAUSS (or heavily modify it) with a faster Quasi-Newtonian solver.
