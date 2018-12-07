@@ -18,8 +18,8 @@ public static class Utils {
     {
         for (int i = 0; i < floats.Count(); i += 3)
             yield return new Vector3(
-                floats.ElementAt(i), 
-                floats.ElementAt(i + 1), 
+                floats.ElementAt(i),
+                floats.ElementAt(i + 1),
                 floats.ElementAt(i + 2));
     }
 }

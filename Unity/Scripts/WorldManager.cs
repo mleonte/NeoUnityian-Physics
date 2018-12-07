@@ -10,6 +10,7 @@ public class WorldManager : MonoBehaviour
     public float timeStepRate;
     private World world;
     private int displacementCount;
+    private bool started = false;
 
     // Use this for initialization
     void Awake () {
@@ -17,7 +18,7 @@ public class WorldManager : MonoBehaviour
         world = new World(timeStepRate);
         foreach (var obj in objects)
         {
-            world.AddObject(obj.verticies, obj.tets);
+            obj.objPtr = world.AddObject(obj.verticies, obj.tets);
             displacementCount += obj.verticies.Length;
         }
         world.FinalizeWorld();
@@ -26,12 +27,25 @@ public class WorldManager : MonoBehaviour
 
     // Update is called once per frame
     void Update () {
-        world.Step();
-        int i = 0;
-        foreach (var obj in objects)
+        if (started)
         {
-            obj.ApplyMovement(world.displacements.Skip(i).Take(obj.verticies.Length).ToArray());
-            i += obj.verticies.Length;
+            world.Step();
+            int i = 0;
+            foreach (var obj in objects)
+            {
+                obj.ApplyMovement(world.displacements.Skip(i).Take(obj.verticies.Length).ToArray());
+                i += obj.verticies.Length;
+            }
         }
+    }
+
+    public void StartSimulation()
+    {
+        started = true;
+    }
+
+    public void PauseSimulation()
+    {
+        started = false;
     }
 }

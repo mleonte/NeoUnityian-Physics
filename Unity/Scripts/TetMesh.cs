@@ -23,7 +23,6 @@ public class TetMesh : MonoBehaviour {
     // Use this for initialization
     void Awake ()
     {
-        objPtr = new IntPtr();
     }
 
     public void Generate()
@@ -57,10 +56,18 @@ public class TetMesh : MonoBehaviour {
     void MeshReplace()
     {
         Mesh newMesh = new Mesh();
+
+        //The triangles tend to come out reversed, so we need to fix them
+        DMesh3 dmesh3 = DMesh3Builder.Build<float, int, float>(verticies, faces);
+        MeshNormals.QuickCompute(dmesh3);
+        dmesh3.ReverseOrientation(false);
+
         newMesh.vertices = verticies.ToVectors().ToArray();
-        newMesh.triangles = faces;
-        newMesh.uv = newMesh.vertices.Select(v => new Vector2(v.x, v.z)).ToArray();
-        newMesh.RecalculateNormals();
+        newMesh.triangles = dmesh3.TrianglesBuffer.ToArray();
+        for (int i = 0; i < mesh.uv.Length; i++)
+        {
+            newMesh.uv[i] = mesh.uv[i];
+        }
         newMesh.MarkDynamic();
         GetComponent<MeshFilter>().mesh = newMesh;
     }
